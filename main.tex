@@ -50,7 +50,7 @@ Qual'è il miglior tasso di trasmissione possibile?
     \item \textbf{Teoria classica dell'informazione}
     \\ Ci chiediamo cosa sia l'informazione e come renderla affidabile su canali inaffidabili. Vediamo in breve cenni di teoria dell'informazione di Shannon:
     \begin{itemize}
-        \item È possibile inviare informazione con probabilità di errore $\epsilon$, se il tasso di comunicazione è minore della capacità del canale
+        \item È possibile inviare informazione con probabilità di errore $\varepsilon$, se il tasso di comunicazione è minore della capacità del canale
         \item Ogni segnale ha complessità intrinseca (\textit{entropia}) oltre al quale non può essere compreso
         \item Se l'entropia della sorgente è minore della capacità di canale, una comunicazione (asintoticamente) priva di errori può avvenire
     \end{itemize}
@@ -811,7 +811,7 @@ L'entropia relativa soddisfa la \textbf{Diseguaglianza di Gibbs}:
 \end{equation}
 dove $D_{KL}(P||Q) = 0$ se e solo se $P = Q$
 
-\textbf{Dimostrazione}:
+\textbf{Dimostrazione della Diseguaglianza di Gibbs}:
 $$
 -D_{KL}=-\sum_{x\in A_X}P(x)\log\frac{P(x)}{Q(x)} = \sum_{x\in A_X}P(x)\log\frac{Q(x)}{P(x)}
 $$
@@ -850,6 +850,11 @@ La Mutua Informazione tra due variabili aleatorie X ed Y misura la perdita media
 \begin{equation}
 I(X;Y) = H(X) - H(X|Y) = \sum_{x\in A_X}\sum_{y\in A_Y}P(x,y)\log_2\frac{P(x,y)}{P(x)P(y)}
 \end{equation}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\textwidth]{Immagini/mutua_info.png}
+\end{figure}
 
 \textbf{Dimostrazione}:
 $$
@@ -1106,7 +1111,8 @@ Possiamo affermare che l'Informazione di Shannon, indipendentemente dalla distri
 
 \newpage
 \subsection{Cos'è la Compressione e quali tipi di compressione esistono?}
-Adesso possiamo discutere di quanti bit sono \textbf{necessari} per descrivere il risultato di un evento sorgente. Infatti se riuscissimo a comprimere una sorgente in un file a L-bit per simbolo allora l'informazione media contenuta nella sorgente è al massimo L-bit per simbolo.
+Adesso possiamo discutere di quanti bit sono \textbf{necessari} per descrivere il risultato di un evento sorgente.
+Dimostrare che è possibile comprimere i dati da una particolare sorgente in un file a $L$ bit per simbolo e ricostruire i dati in maniera affidabile equivale a dimostrare che il contenuto di informazione media di quella sorgente è al più $L$ bit per simbolo.
 
 Utilizzeremo le nozioni base del Teorema del Codice Sorgente per la \textbf{compressione di una sorgente}. Esistono \textbf{due modi} per comprimere una sorgente:
 \begin{enumerate}
@@ -1136,27 +1142,30 @@ $$
 H_0(X) = \log_{2} 8 = 3\ \text{bit}
 $$
 
-Vogliamo comprimere l'alfabeto $A_X$ eliminando i caratteri poco probabili, ovvero $\{\verb|e,f,g,h|\}$.\\ Abbiamo così un alfabeto $A_X'$ formato da $\{\verb|a,b,c,d|\}$, il cui raw-bit content è $H_0(X') = \log_2 4 = 2\ \text{bit}$ e un $\delta = \frac{1}{16}$.
+Vogliamo comprimere l'alfabeto $A_X$ eliminando i caratteri poco probabili, ovvero $\{\verb|e,f,g,h|\}$.
+
+Abbiamo così un alfabeto $A_X'$ formato da $\{\verb|a,b,c,d|\}$, il cui raw-bit content è $H_0(X') = \log_2 4 = 2\ \text{bit}$ e un $\delta = \frac{1}{16}$.
 
 Per formalizzare una strategia di compressione con un rischio $\delta$, creiamo il più piccolo insieme $S_\delta$ affinché la probabilità che $x$ non sia in $S_\delta$ è:
 \begin{equation}
-Pr(x\in S_\delta) \leq \delta
+Pr(x\notin S_\delta) \leq \delta
 \end{equation}
 
 \newpage
 \subsection{Quali sono gli strumenti per una Compressione Lossy?}
 Definiamo due \textbf{strumenti fondamentali} per una compressione lossy ideale:
 \begin{itemize}
-	\item \textbf{Minimo insieme $\delta$-sufficiente}: Minimo sottoinsieme $S_\delta$ di $A_X$ tale che:
+	\item \textbf{Minimo insieme $\delta$-sufficiente}: Minimo sottoinsieme $S_\delta \subseteq A_X$ tale che:
 	\begin{equation}
 		Pr(x \in S_\delta) \geq 1 - \delta
 	\end{equation}
-	Questo sottoinsieme $S_\delta$ viene costruito ordinando gli elementi di $A_X$ in ordine decrescente in base alla loro probabilità ed aggiungendoli ad $S_\delta$ partendo da quelli più probabili, fino a quando la probabilità totale è $\geq 1 - \delta$. Possiamo infine assegnare un nome binario ad ogni elemento di $S_\delta$.
+	Questo sottoinsieme $S_\delta$ viene costruito in maniera greedy, ordinando gli elementi di $A_X$ in ordine decrescente in base alla loro probabilità ed aggiungendoli ad $S_\delta$ partendo da quelli più probabili, fino a quando la probabilità totale è $\geq 1 - \delta$. Possiamo infine assegnare un nome binario ad ogni elemento di $S_\delta$.
 	
 	\item \textbf{Essential bit content} di $X$ equivale a:
 	\begin{equation}
 		H_\delta(X) = \log_{2} |S_\delta|
 	\end{equation}
+	ed è la lunghezza delle codifiche di $S_\delta$.\\
 	\textit{Osservazione}: Se $\delta=0$ l'essential bit content \textbf{coincide} con il raw-bit content.
 \end{itemize}
 
@@ -1188,7 +1197,7 @@ Abbiamo due opzioni con il caso 3:
 \begin{itemize}
 	\item Se lo mantenessimo, avremmo: 
 	$$Pr[X= \text{"x contiene al massimo due 1"}] > 0,99$$ 
-	e un $\delta = 0,01$. Sapendo quindi che $S_\delta = 11$ posso calcolare l'essential bit content:
+	e un $\delta = 0,01$. Sapendo quindi che $|S_\delta| = 11$ posso calcolare l'essential bit content:
 	$$
 	H_\delta(X^{11}) = \log_{2} 11 = 3,45\ \text{bit}
 	$$
@@ -1196,7 +1205,7 @@ Abbiamo due opzioni con il caso 3:
 	
 	\item Se lo rimuovessimo, avremmo:
 	$$Pr[X= \text{"x contiene al massimo un 1"}] > 0,94$$ 
-	e un $\delta = 0,06$. Sapendo quindi che $S_\delta = 5$ posso calcolare l'essential bit content:
+	e un $\delta = 0,06$. Sapendo quindi che $|S_\delta| = 5$ posso calcolare l'essential bit content:
 	$$
 	H_\delta(X^5) = \log_{2} 5 = 2,32\ \text{bit}
 	$$
@@ -1224,22 +1233,22 @@ Questo fenomeno è detto \textbf{Tipicalità}, cioè al crescere di $N$ la strin
 
 
 \subsection{Teorema del Codice Sorgente di Shannon}
-Data una variabile aleatoria $X$ con un'entropia $H(X) = H\ \text{bit}$, un $\epsilon > 0$ e $0 < \delta < 1$ allora esiste un intero positivo $N_0$ per $N > N_0$ affinché:
+Data una variabile aleatoria $X$ con un'entropia $H(X) = H\ \text{bit}$, un $\varepsilon > 0$ e $0 < \delta < 1$ allora esiste $N_0 \in \mathbb{N}^+$ tale che, per $N > N_0$ vale:
+\begin{equation}
+\left| \frac{1}{N} H_\delta(X^N)-H \right| < \varepsilon	
+\end{equation}
+Di conseguenza:
 $$
-\left| \frac{1}{N} H_\delta(X^N)-H \right| < \epsilon
+H - \varepsilon < \frac{1}{N} H_\delta(X^N) < H + \varepsilon
 $$
 
-$$
-H - \epsilon < \frac{1}{N} H_\delta(X^N) < H + \epsilon
-$$
-
-Da questo teorema possiamo dedurre due importanti conseguenze:
+Da questo teorema possiamo dedurre due importanti risultati:
 \begin{enumerate}
-	\item La prima deriva da: $$\frac{1}{N} H_\delta(X^N) < H + \epsilon$$
-	che afferma che anche se $\delta$ è estremamente piccolo, il numero di bit per simbolo $\frac{1}{N} H_\delta(X^N)$ necessario per specificare una stringa $x$ con $N$-simboli con probabilità di errore bassa non deve eccedere gli $H + \epsilon$ bit. Abbiamo bisogno di una \textbf{piccola tolleranza} per errore e il numero di bit richiesti crolla da $H_0(X)$ a $(H+\epsilon)$. 
+	\item Il primo deriva da: $$\frac{1}{N} H_\delta(X^N) < H + \varepsilon$$
+	che afferma che anche per $\delta$ molto piccoli, il numero di bit per simbolo $\frac{1}{N} H_\delta(X^N)$ necessario per specificare una stringa $x$ con $N$ simboli con probabilità di errore bassa non deve eccedere gli $H + \varepsilon$ bit. Abbiamo bisogno di una \textbf{piccola tolleranza} per errore e il numero di bit richiesti crolla da $H_0(X)$ a $(H+\varepsilon)$. 
 	
-	\item La seconda deriva da: $$H - \epsilon < \frac{1}{N} H_\delta(X^N)$$
-	che afferma che anche se il nostro compressore fosse molto tollerante agli errori di compressione, con un $\delta$ vicino a 1, il \textbf{numero medio} di bit per simbolo necessari per rappresentare $x$ devono essere almeno $H - \epsilon$ bit.
+	\item Il secondo deriva da: $$H - \varepsilon < \frac{1}{N} H_\delta(X^N)$$
+	che afferma che anche se il nostro compressore fosse molto tollerante agli errori di compressione, con un $\delta$ vicino a 1, il \textbf{numero medio} di bit per simbolo necessari per rappresentare $x$ devono essere almeno $H - \varepsilon$ bit.
 \end{enumerate}
 
 Questi due estremi quindi affermano che, indipendentemente dalla nostra tolleranza all'errore, il numero di bit per simbolo necessari per rappresentare $x$ è $H$ bit.
@@ -2089,7 +2098,7 @@ Il Teorema di compone di tre parti:
 	\begin{equation}
 		C = \max_{P_X} I(X;Y)
 	\end{equation}
-	ha la seguente proprietà. Per ogni $\epsilon > 0$, $R < C$ ed $N$ sufficientemente grande, esiste un codice di lunghezza $N$ e tasso $\geq R$ ed un decoder tale che la probabilità di block error massima è $< \epsilon$.
+	ha la seguente proprietà. Per ogni $\varepsilon > 0$, $R < C$ ed $N$ sufficientemente grande, esiste un codice di lunghezza $N$ e tasso $\geq R$ ed un decoder tale che la probabilità di block error massima è $< \varepsilon$.
 	
 	\item Se si ammette una probabilità di bit error $p_b$, tassi fino a
 	\begin{equation}
