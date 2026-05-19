@@ -28,7 +28,3 @@ Appunti-Quantum-Info/
 └── README.md                       tu sei qui!
 ```
 
-## Contributors
-@Wikypippo
-@Steph04m
-@BoredDam
