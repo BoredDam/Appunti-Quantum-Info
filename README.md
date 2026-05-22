@@ -22,9 +22,8 @@ Appunti-Quantum-Info/
 │   └── qclec.pdf
 ├── chapters/                       
 ├── images/                         
-├── main.pdf
+├── main.pdf                        gli appunti renderizzati
 ├── main.tex
-├── Quantum_Information.pdf         gli appunti renderizzati
 └── README.md                       tu sei qui!
 ```
 
