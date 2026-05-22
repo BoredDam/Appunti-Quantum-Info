@@ -120,9 +120,9 @@ Dimostrare che è possibile comprimere i dati da una particolare sorgente in un 
 
 Utilizzeremo le nozioni base del Teorema del Codice Sorgente per la \textbf{compressione di una sorgente}. Esistono \textbf{due modi} per comprimere una sorgente:
 \begin{enumerate}
-	\item \textbf{Compressione Lossy}: Questo tipo di compressione consente la \textbf{perdita di informazione} per comprimere il file sorgente. Un compressore lossy comprime quindi alcuni file ma ne \textbf{mappa altri alla stessa codifica}.\\ Denoteremo con $\delta$ la probabilità di fallimento del compressore lossy. Se $\delta$ può essere ridotto ad un valore molto basso, il compressore può rivelarsi utile.
+	\item \textbf{Compressione Lossy}: questo tipo di compressione consente la \textbf{perdita di informazione} per comprimere il file sorgente. Un compressore lossy comprime quindi alcuni file ma ne \textbf{mappa altri alla stessa codifica}.\\ Denoteremo con $\delta$ la probabilità di fallimento del compressore lossy. Se $\delta$ può essere ridotto ad un valore molto basso, il compressore può rivelarsi utile.
 	
-	\item \textbf{Compressione Lossless}: Questo tipo di compressione \textbf{non consente alcun tipo di perdita di informazione}. Un compressore lossless mappa tutti i file a \textbf{codifiche diverse}, con la conseguenza che alcuni file potrebbero \textbf{ingrandirsi} invece che ridursi.\\
+	\item \textbf{Compressione Lossless}: questo tipo di compressione \textbf{non consente alcun tipo di perdita di informazione}. Un compressore lossless mappa tutti i file a \textbf{codifiche diverse}, con la conseguenza che alcuni file potrebbero \textbf{ingrandirsi} invece che ridursi.\\
 	Vogliamo quindi creare un compressore dove la probabilità che un file si ingradisca sia \textbf{molto bassa} e quella in cui si riduca sia \textbf{molto elevata}.
 \end{enumerate}
 

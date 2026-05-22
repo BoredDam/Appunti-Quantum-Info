@@ -48,212 +48,7 @@
 \include{./chapters/classica8}
 
 \part{Informazione Quantistica}
-
-\chapter{Fondamenti di Algebra Lineare}
-\section{Algebra Lineare}
-Consideriamo lo \textbf{spazio di Hilbert} $\mathbb{C}^d$ dei vettori colonna sui numeri complessi:
-$$
-v =
-\begin{pmatrix}
-  v_1 \\
-  v_2 \\
-  \vdots \\
-  v_d
-\end{pmatrix},
-\hspace{0.3cm} v_i \in \mathbb{C}
-$$
-Dotato del prodotto scalare $\braket{v|w} = \sum^{d-1}_{i=0}\bar{v_i}w_i$.
-Se $\mathcal{H}$ è uno spazio di Hilbert arbitrario con $\dim(\mathcal{H} = d)$ finita, posso scegliere una \textit{Base ortonormale} $\left\{ \ket{e_i} \right\}^d_{i=1}$ di $\mathcal{H}$, cioè t.c
-$$\braket{e_i|e_j} 
-\begin{cases}
- \hspace{0.2cm}1 \hspace{0.8cm} i=j \\
- \hspace{0.2cm}0 \hspace{0.8cm} i\neq j
-\end{cases}
-$$
-Indichiamo i vettori di $\mathcal{H}$ con il simbolo $\ket{\Psi}$ e $\bra{\psi}$ per il suo duale,\\
-\textbf{Base Ortonormale standard} di $\mathcal{H} = \mathbb{C}^d$
-$$
-\ket{0}=
-\begin{pmatrix}
-    1 \\
-    0 \\
-    \vdots \\
-    0
-\end{pmatrix}, 
-\ket{1}=
-\begin{pmatrix}
-    0 \\
-    1 \\
-    \vdots \\
-    0
-\end{pmatrix}, \dots,
-\ket{d-1}=
-\begin{pmatrix}
-    0 \\
-    0 \\
-    \vdots \\
-    1
-\end{pmatrix}
-$$
-
-Se $\ket{\Psi} = 
-\begin{pmatrix}
-    \psi_1 \\
-    \psi_2 \\
-    \vdots \\
-    \psi_{d-1}
-\end{pmatrix}
-$
-allora: $$\ket{\Psi} = \sum^{d-1}_{i=0}\psi_i \ket{i} \qquad\text{e il suo duale è:}\quad \bra{\Psi} = \left(\bar{\psi_0},\bar{\psi_1},\dots,\bar{\psi}_{d-1} \right)$$
-
-Il prodotto scalare soddisfa la \textbf{Disequazione di Schwartz}:
-$$\forall \ket{\Phi},\ket{\Psi} \in \mathcal{H} = \mathbb{C}^d, \hspace{0.2cm} \left|\braket{\Phi|\Psi} \right|^2 \le \braket{\Phi|\Phi} \cdot \braket{\Psi|\Psi}$$
-E vale solo se: $$\ket{\Phi} = k\ket{\Psi}, \exists k \in\mathbb{C}$$
- 
-La norma indotta del prodotto scalare è $\left| \left| \Psi\right| \right| = \sqrt{\braket{\Psi|\Psi}}$, per cui possiamo riscrivere il lemma di Schwartz come:
-$$\braket{\Phi|\Psi} = \left| \left|\Phi \right| \right| \cdot \left| \left|\Psi \right| \right|$$
-\newpage 
-\subsection{Mappe lineari e matrici}
-Utilizziamo funzioni lineari $f$, con le seguenti proprietà:
-\begin{enumerate}
-    \item $f(\lambda x) = \lambda f(x)$,
-    \item $f(x+y) = f(x) + f(y)$ 
-\end{enumerate}
-
-Dati $\mathcal{H}= \mathbb{C}^d, \mathcal{K} = \mathbb{C}^e$ spazi di Hilbert, $\textit{lin}(\mathcal{H},\mathcal{K})$ è l'insieme delle \textbf{mappe lineari} da $\mathcal{H}$ a $\mathcal{K}$.\\ Se fissiamo una base per $\mathcal{H}$ e una base per $\mathcal{K}$ allora ogni mappa di $\textit{lin}(\mathcal{H},\mathcal{K})$ può essere scritta come una matrice $d\times e$
-$$\textit{lin}(\mathcal{H},\mathcal{H}) = \textit{lin}(\mathcal{H}) \hspace{0.5cm} \mathbb{1} \text{ op. identità}$$
-La \textbf{Traccia} di $M \in \textit{lin}(\mathcal{H})$ si calcola scegliendo una base $\Sigma$ di $\mathcal{H}$ e sommando gli elementi della diagonale principale.
-$$\text{tr}[M] = \sum_{i \in \Sigma} \braket{i|M|i}$$
-La traccia  è un invariante  per cambiamenti di base e soddisfa 
-$$\text{tr}[MN] = \text{tr}[NM],\hspace{0.4cm} \forall M\in \textit{lin}(\mathcal{H,K}),N\in \textit{lin}(\mathcal{K,H})$$
-
-Se $M\in \textit{lin}(\mathcal{H})$ e $N = \ket{\Psi}\bra{\Psi}$ per $\ket{\Psi}\in \mathcal{H}$ allora 
-$\text{tr}[MN]=\braket{\Psi|M|\Psi}$
-
-Se $M\in \textit{lin}(\mathcal{H})$ e $\exists\ket{\Psi}\in \mathcal{H}$ non nullo e $n \in \mathbb{C}$ t.c $M \ket{\Psi} = \lambda \ket{\Psi}$ allora $\ket{\Psi}$ è un \textbf{Autovettore} di $M$ con \textbf{Autovalore} $\lambda$.
-
-Se $M\in \textit{lin}(\mathcal{H}_1,\mathcal{H}_2)$, dove $\mathcal{H}_1$ ha base $\Sigma_1$ e  $\mathcal{H}_2$ ha base $\Sigma_2$ allora 
-$$M = \sum_{i \in \Sigma_1}\sum_{j \in \Sigma_2} M_{ij} \ket{i}\bra{j}\hspace{0.2cm} \text{e} \hspace{0.2cm} M_{ij} = \braket{i|M|j}$$
-Sia  $M\in \textit{lin}(\mathcal{H}_1,\mathcal{H}_2)$, l'\textbf{Operatrore aggiuto} di $M$ è il \textit{"dagger"} di $M$
-$$M^\dagger = \overline{M}^T$$
-ed è tale che $$\braket{\Psi|M|\Phi} = \overline{\braket{\Phi|M^\dagger|\Psi}}$$
-
-Ed inoltre
-$$M^\dagger\in \textit{lin}(\mathcal{H}_2,\mathcal{H}_1) \qquad \text{e} \qquad M^\dagger = \sum_{i,j} \overline{M_{ij}} \cdot\ket{j}\bra{i}$$
-
-$M\in \textit{lin}(\mathcal{H})$ è \textbf{Hermitiano} (o autoaggiunto) se $M = M^\dagger$, cioè significa che $M$ ha elementi diagonali $M_{ii}$ reali e $M_{ij} = \overline{M_{ij}}$ per $i\neq j$.
-
-$$\begin{pmatrix}
-    1 & 1+i \\
-    1-i & 0\\
-\end{pmatrix}$$
-Le matrici Hermitiane hanno autovalori reali e ammettono una base di autovettori.
-\subsubsection{Teorema Spettrale}
-Sia $M\in \textit{lin}(\mathcal{H})$ Hermitiana e $\dim (\mathcal{H} = d)$, allora 
-$\exists \lambda_1\ge\lambda_2\ge\dots\ge \lambda_d \in \mathbb{R}$ e una base $\left\{\ket{\Psi}\right\} ^d_{i=1} $ t.c.
-$$M = \sum^d_{i=1}\lambda_i \ket{\Psi_i}\bra{\Psi_i}\hspace{0.4cm} \text{e\hspace{0.4cm} $\left\{ \lambda\right\} ^d_{i=1} $ si chiama \textbf{Spettro di M}}$$
-
-Questo teorema ci dice che una matrice hermitiana può essere diagonalizzata usando matrici unitarie e la matrice diagonale ha elementi reali.
-\medskip
-\\OSS: lo spettro è univocamente è univocamente determinato da $M$ ma gli autovalori potrebbero essere non unici se lo spettro è degenere.
-\\esempio: $\mathbb{1} = \sum^d_{i=1}\ket{\Psi_i}\bra{\Psi_i}, \hspace{0.2cm} \forall \left\{ \ket{\Psi_i}\right\} ^d_{i=1}$ 
-
-\medskip
-Se $M$ è Hermitiano  (o unitario) e $f$ è una funzione a una variabile, allora
-$$f(M) = \sum^d_{i=1} f(\lambda_i)\ket{\Psi_i} \bra{\Psi_i}$$
-Ossia: bisogna che $f$ sia ben definita sullo spettro.
-
-\subsubsection{Operatori Positivi}
-$P \in \textit{lin}(\mathcal{H})$ è \textbf{Semidefinito positivo} (\textit{PSD}) oppure solo \textit{positivo} se
-$$\forall \ket{\Psi} \in \mathcal{H}, \braket{\Psi|P|\Psi} \ge 0$$
-\textbf{PSD($\mathcal{H})$} è l'insieme degli operatori $P\ge 0$ su $\mathcal{H}$
-\medskip
-
-$P \in \textit{lin}(\mathcal{H})$ è \textbf{Definitivo positivo} (\textit{PD}) $P > 0$ se $\forall \braket{\Psi|P| \Psi} > 0$
-
-\medskip
-\textit{PD($\mathcal{H}$)} è l'insieme degli operatori $P > 0$ su $\mathcal{H}$
-
-\medskip 
-\textbf{Lemma (caratterizzazione degli operatori PSD)}:
-
-$P \in \textit{lin}(\mathcal{H})$ equivale a dire:
-\begin{itemize}
-    \item[\textbf{A.}] $P$ è \textit{PSD}, $\braket{\Psi|P|\Psi} \ge 0 \hspace{0.5cm} \forall\ket{\Psi}\in\mathcal{H}$ 
-    \item[\textbf{B.}] $P$ è Hermitiano e i suoi autovalori sono \textbf{non negativi}
-    \item[\textbf{C.}] $\exists M \in \textit{lin}(\mathcal{H,K}):P=M^\dagger M \hspace{0.3cm} \exists \mathcal{K}$ spazio di Hilbert
-    \item[\textbf{D.}] $\forall Q \in PSD(\mathcal{H}),\  \text{tr}[PQ] \ge 0$
-\end{itemize}
-
-\subsubsection{Corollario}
-Se $$P \in PSD(\mathcal{H}), M \in \textit{lin}(\mathcal{H,K})$$ allora $$MPM^\dagger \in PSD(\mathcal{K}) \qquad P\le Q \Leftrightarrow Q-P \ge 0$$
-Questa nozione induce un ordinamento...
-
-\subsubsection{Matrici Unitarie e Isometrie}
-\begin{itemize}
-	\item $V \in \textit{lin}(\mathcal{H,K})$ è \textbf{Isometria} se $V^\dagger V = \mathbb{1}$ (solo se $\dim(\mathcal{H}) \le\dim(\mathcal{K})$)
-	
-	\item $V\in \textit{lin}(\mathcal{H})$ è \textbf{Unitaria} se $U^\dagger U = UU^\dagger = \mathbb{1}$
-	
-\end{itemize}
-
-Definiamo $U(\mathcal{H})$ l'\textbf{insieme delle matrici unitarie} su $\mathcal{H}$:
-$$\textit{Isom}(\mathcal{H,K})$$ 
-insieme delle matrici isometrie da $\mathcal{H}$ a $\mathcal{K}$
-
-$P \in \textit{lin}(\mathcal{H})$ è una \textbf{Proiezione} se $P^2 = P$ e $P$ è Hermitiana.
-
-Sia $$\left\{\ket{e_i} \right\}^d_{i=1}$$ base per l'immagine di una proiezione $P$, allora 
-$$P = \sum^d_{i=1}\ket{e_i}\bra{e_i}$$
-
-Supponiamo $M$ Hermitiana, allora $M = \sum^d_{i=1} \lambda_i \ket{\Psi_i}\bra{\Psi_i}$
-
-\medskip
-I proiettori sono $P_\lambda = \sum_{i=\lambda} \ket{\Psi_i}\bra{\Psi_i}$
-
-\medskip
-Se $\Lambda =$ insieme degli autovalori \underline{distinti}, allora $$M = \sum_{\lambda\in \Lambda} \lambda P_\lambda$$
-
-In generale $$M\in\textit{lin}(\mathcal{H,K}) \quad \text{,} \quad M = \sum^r_{i=1} s_i\ket{e_i}\bra{f_i}$$
-con $s_i\ge0$ autovalori, $r = \textit{rank}(M)$ ed $e_i,f_i$ basi di $\mathcal{H}$ e $\mathcal{K}$.
-
-\newpage
-\subsection{Prodotti tensoriali}
-Def. $\mathcal{H,K}$ spazi di Hilbert, il loro \textbf{Prodotto tensoriale $\mathcal{H} \otimes \mathcal{K}$} è lo spazio di Hilbert che contiene tutte le combinazioni lineari di vettori della forma $v \otimes u, \hspace{0.2cm} v\in\mathcal{H}, w \in \mathcal{K}$
-\begin{itemize}
-    \item $(\alpha v) \otimes (\beta w) = \alpha\beta \cdot v\otimes w, \hspace{0.2cm} \forall\alpha,\beta \in \mathbb{C}$
-    \item $(v_1 + v_2) \otimes w = v_1 \otimes w + v_2 \otimes w$
-    \item $v + (w_1 \otimes w_2) = v \otimes w_1 + v \otimes w_2$
-\end{itemize}
-Il prodotto scalare è definito da
-$$\braket{v_1 \otimes w_2 |v_2 \otimes w_2} = \braket{v_1|v_2} \otimes\braket{w_1|w_2}$$
-Base di $\mathcal{H} \otimes \mathcal{K} \hspace{0.5cm} \left\{ \ket{i} \otimes\ket{j} \right\}, \ket{i}\in B_\mathcal{H}, \ket{j} \in B_\mathcal{K}$
-
-\medskip
-$\ket{\Phi}\ket{\Psi} = \ket{\Phi\Psi} = \ket{\Phi} \otimes \ket{\Psi}$
-
-\medskip
-$\ket{\Phi} ^{\otimes n} = \ket{\Phi} \otimes \dots \otimes \ket{\Phi} \hspace{0.5cm} \mathcal{H}^{\otimes n} = \mathcal{H} \otimes\dots\otimes\mathcal{H}$
-
-\medskip
-Se $M \in \textit{lin}(\mathcal{H}_1,\mathcal{H}_2)$ e $N \in \textit{lin}(\mathcal{K}_1,\mathcal{K}_2)$ allora
-$$M\otimes N : \mathcal{H}_1 \otimes \mathcal{K}_1 \longrightarrow \mathcal{H}_2 \otimes \mathcal{K}_2 $$
-$$(M \otimes N) (\ket{ \Phi} \otimes \ket{\Psi}) = M\ket{\Phi} \otimes N \ket{\Psi}$$
-$$\textit{lin}(\mathcal{H}_1\otimes\mathcal{K}_1,\mathcal{H}_2\otimes\mathcal{K}_2) = \textit{lin}(\mathcal{H}_1,\mathcal{H}_2) \otimes \textit{lin}(\mathcal{K}_1,\mathcal{K}_2)$$
-$$M = \sum_{i,j}M_{ij}\ket{i}\bra{j}, \quad N = \sum_{k,l} N_{kl} \ket{k}\bra{l}$$
-$$M \otimes N = \sum_{i,j,k,l} M_{ij} N_{kl}\ket{i}\bra{j} \otimes \ket{k}\bra{l} = \sum_{i,j,k,l} M_{ij} N_{kl}\ket{ik}\bra{jl}$$
-
-\textbf{Lemma 4.1}
-\begin{description}
-    \item[a.] $P \in \textit{PSD}(\mathcal{H}), Q \in \textit{PSD}(\mathcal{K}) \Rightarrow P \otimes Q \in \textit{PSD}(\mathcal{H}\otimes\mathcal{K})$
-    \item[b.] $\forall M \in \textit{lin}(\mathcal{H}), N \in \textit{lin}(\mathcal{K}), \text{ tr}[M\otimes N] = \text{tr}[M]\text{tr}[N]$
-    \item[c.] $\forall M \in \textit{lin}(\mathcal{H}), N \in \textit{lin}(\mathcal{K}), \text{ rank}(M\otimes N) = \text{rank}(M)\text{rank}(N)$
-    \item[d.] $\ket{\Phi}\otimes z = z\ket{\Phi}, z \in \mathbb{C} \hspace{1cm}\mathcal{H} \otimes \mathbb{C}= \mathcal{H}$
-    \item[e.] $M\otimes \ket{\Psi}: \mathcal{H} \longrightarrow \mathcal{H} \otimes \mathcal{K} \hspace{0.8cm} (M\otimes \ket{\Psi})\ket{\Phi} = M \ket{\Phi} \otimes \ket{\Psi}$
-    
-    \medskip
-    $M\otimes \bra{\Psi}: \mathcal{H} \otimes \mathcal{K} \longrightarrow \mathcal{H} \hspace{0.8cm} (M\otimes \bra{\Psi}) (\ket{\Phi}\otimes\bra{\chi}) = \braket{\Psi|\chi} M \ket{\Phi} \otimes \in \mathcal{H}$
-\end{description}
+\include{./chapters/quantistica1}
 
 \section{Stati Quantistici}
 $$\ket{0} = 
@@ -660,5 +455,89 @@ $$
 Si osservi che in tal caso, le sole probabilità dei risultati di Alice non dipendono da quelle dei risultati di bob
 \medskip\\
 Adesso vogliamo ricostruire una descrizione appropriata dello stato di ALice quando il sistema globale si trova nello stato $\rho_{AB}$. Vorremmo che:
+
+
+
+
+\chapter{Quantum information processing}
+
+\section{Quantum information processing}
+Che operazioni possono essere fati su stati quantistici? Quando si applica un operatore su uno stato quantistisco, si effettua una operazione del tipo
+\begin{equation}
+\ket\psi \to U\ket\psi,
+\end{equation}
+%
+o nel caso delle matrici di densità:
+\begin{equation}
+	\ket\psi\bra\psi \to U\ket\psi\bra\psi U^\dagger.
+\end{equation}
+
+\subsection{Evoluzione temporale}
+Lo stato di un sistema quantistico $\ket{\psi_t}$ al tempo $t$, evolve secondo un Hamiltoniana $H(t)$.
+\begin{equation}
+\frac{d\ket{\psi_t}}{dt} = -i H(t)\ket{\psi_t}
+\end{equation}
+
+Noto lo stato di partenza $\ket{\psi_0}$ , otteniamo un equazione differenziale la cui soluzione determina lo stato $\ket{\psi_0}$ a tutti gli istanti $t$. La soluzione è tale che $\ket{\psi_t} = U_t\ket{\psi_0}$. Viceversa, data una mappa unitaria $U \in \textit{lin}(\mathcal H)$ esiste una Hamiltoniana $H(t)$ per $H(1) = U$.
+
+Tutte le trasformazioni, in meccanica quantistica, coincidono con operazioni unitarie. In computazione quantistica, questo si traduce in gate ($X$, $Z$, $CNOT$).
+
+\section{Operazioni sugli stati}
+Queste operazioni sugli stati sono modellate tramite mappe lineari.
+Vale quindi che
+\begin{equation}
+\phi_{A\to B}(\sum_i p_i\rho_i) = \sum_i p_i \phi_{A\to B}(\rho_i)
+\end{equation}
+
+\subsection{Superoperatori e proprietà}
+Un superoperatore è un operatore lineare che agisce su altri operatori, mappando operatori lineari ad altri operatori.
+
+Dati i sistemi quantistici $A, \ B$, un superoperatore da $A$ a $B$ è una mappa lineare da $\phi _{A \to B} : \textit{Lin}(A) \to \textit{Lin}(B)$. Se $A = B$, usiamo la notazione $\phi_A = \phi_{A\to A}$.
+
+Alcuni superoperatori, sono:
+\begin{itemize}
+	\item \textbf{Superoperatore identità}
+	\item \textbf{Traccia parziale}
+	\item \textbf{Le isometrie}
+\end{itemize}
+
+
+Inoltre, è possibile comporre superoperatori $A \to B, B \to C$ per ottenere un superoperatore $A \to C$. 
+Inoltre, il prodotto tensoriale $\phi_{A\to B} \otimes \psi_{C\to D} = AC \to BD$. 
+
+\subsection{Mappe positive}
+Un superoperatore $\phi_{A \to B}$ è una \textbf{mappa positiva} se $\forall P_A \in PSD(A)$ si ha $\phi_{A \to B} \in PSD(B)$.
+
+\paragraph{Lemma sulla composizione di mappe positive} La composizione di mappe positive è una mappa positiva. Questa è la circostanza in cui più gate vengono posti uno dopo l'altro su una linea quantistica.
+
+\paragraph{E sul prodotto tensoriale di mappe positive?}
+Il prodotto tensoriale di mappe positive non è una mappa positiva!
+Ad esempio, \bf INSERIRE ESEMPIO DELLA LEZIONE\rm
+
+
+Abbiamo quindi bisogno di una condizione più forte, per mantenere la positività, nota come completa positività. 
+
+Un superoperatore ... è una mappa completamente positiva (CP) se $\forall$ sistema di riferimento $R$, il superoperatore $\phi_{A \to B} \otimes I_R$ è positivo.
+\begin{equation}
+CP(A,B) = \{\text{superoperatori $CP$ da $A$ a $B$}\}, \quad CP(A,A) =
+\end{equation}
+
+
+\section{Canali quantistici}
+...
+
+
+\begin{center}
+	\vspace{3pt}
+	\textbf{\Large Assioma 5 dell'informazione quantistica}\\
+	\vspace{5pt}
+	\it L'insieme delle possibili operazioni da un sistema quantistico $A$ in un altro $B$ è l'insieme dei canali quantistici $C(A,B)$.\rm
+\end{center}
+
+
+
+
+
+
 
 \end{document}
