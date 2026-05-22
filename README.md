@@ -27,3 +27,4 @@ Appunti-Quantum-Info/
 ├── Quantum_Information.pdf         gli appunti renderizzati
 └── README.md                       tu sei qui!
 ```
+
