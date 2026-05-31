@@ -593,7 +593,7 @@ Se un codice univocamente decodificabile soddisfa la Disuguaglianza di Kraft con
 
 Definiamo $\sum_{i=1}^{I} 2^{l_i}$ e sia:
 $$
-S^N = \left[\sum_{i=1}^{I} 2^{l_i}\right]^N = \sum_{i_1 = 1}^{I} \sum_{i_2 = 1}^{I} \cdots \sum_{i_N = 1}^{I} 2^{-(l_{i_1} + l_{i_2} + \cdots l_{i_N})}
+S^N = \left[\sum_{i=1}^{I} 2^{-l_i}\right]^N = \sum_{i_1 = 1}^{I} \sum_{i_2 = 1}^{I} \cdots \sum_{i_N = 1}^{I} 2^{-(l_{i_1} + l_{i_2} + \cdots l_{i_N})}
 $$
 
 La quantità dell'esponente, $(l_{i_1} + l_{i_2} + \cdots l_{i_N})$ è la lunghezza della codifica di una stringa $x = a_{i_1}\ a_{i_2}\cdots a_{i_N}$ e, per ognuna di tali stringhe, c'è un termine di questa somma.\\
@@ -643,7 +643,7 @@ $$
 W_1 = 2^0 = 1 \geq 2^{l_1}\quad,\ l_1 \geq 1
 $$
 
-\textbf{Passo Induttivo}: Supponiamo che l'affermazione sia vero fino al all'($i-1$)-esimo passo.
+\textbf{Passo Induttivo}: Supponiamo che l'affermazione sia vera fino all'($i-1$)-esimo passo.
 
 Al passo $i$, scegliamo un nodo $v$ a profondità $l_i$, che contribuisce con $2^{-l_i}$ al peso. Quindi:
 $$
@@ -676,7 +676,7 @@ q_i = \frac{2^{-l_i}}{z}\quad \text{con} \quad z=\sum_{i} 2^{-l_i}
 $$
 affinché: 
 $$
-l_i = \frac{\log_{2} 1}{q_i - \log_{2} z}
+l_i = \log_{2}\frac{1}{q_i}  - \log_{2} z
 $$
 Usiamo quindi la diseguaglianza di Gibbs, per cui diventa:
 $$
@@ -688,7 +688,7 @@ L(C,X) = \sum_{i} p_i\cdot l_i = \sum_{i} p_i (\log_{2}\frac{1}{q_i} - \log_2 z)
 $$
 
 \subsubsection{Codice simbolico ottimo}
-Se la lunghezza attesa è minimizzata ed è uguale all'entropia solo se le lunghezze delle codeword sono uguali all'Informazione di Shannon:
+La lunghezza attesa è minimizzata ed è uguale all'entropia se e solo se le lunghezze delle codeword sono uguali all'Informazione di Shannon:
 $$
 l_i = \log_{2}\frac{1}{p_i}\quad \text{allora}\quad L(C,X)= H(X)
 $$
@@ -697,7 +697,7 @@ $$
 \subsubsection{Teorema del Codice Sorgente per Codici Simbolici}
 Data una variabile aleatoria $X$ esiste un codice prefix-free $C$ la cui lunghezza attesa soddisfa:
 \begin{equation}
-	H(X) \leq L(C,X) \leq H(X) + 1
+	H(X) \leq L(C,X) < H(X) + 1
 \end{equation}
 
 \textbf{Dimostrazione}:

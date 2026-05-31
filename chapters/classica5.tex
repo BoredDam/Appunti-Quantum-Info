@@ -71,6 +71,8 @@ Dati $A_X = \{0,1\}$  e $A_Y = \{0,1\}$ abbiamo:\\
 	\end{figure}
 \end{minipage}
 
+\newpage
+
 \textbf{Noisy Typewriter}:
 
 Dati $A_X = A_Y = \{\verb|A|, \verb|B|, \verb|C|, \cdots, \verb|Z|, \verb|-|\}$. Le 27 lettere sono raggruppate in un cerchio e quando il dattilografo (typist) prova a scrivere (ad esempio) \verb|B|, il risultato può essere \verb|A,B| o \verb|C|, con ognuno probabilità $\frac{1}{3}$.\\
@@ -206,10 +208,11 @@ $$
 C(Q_{NT}) = \log_{2} 9 = 3,17\ \text{bit}
 $$
 
-\subsection{Teorema del Codice di un Canale Rumoroso}
+\newpage
+\section{Teorema del Codice di un Canale Rumoroso}
 La capacità di canale misura la frequenza di quanti \textbf{blocchi di informazione} possono essere trasferiti nel canale con una \textit{piccola quantità di errore arbitraria}.
 
-\subsubsection{$(N,K)$ codici a blocco}
+\subsection{$(N,K)$ codici a blocco}
 Un $(N,K)$ codice a blocco per un canale $Q$ è una lista di $S=2^K$ codeword tali che:
 \begin{equation}
 	{x^{(1)}, x^{(2)}, \cdots, x^{(2^K)}}, \quad x^{(s)}\in A_X^N
@@ -218,8 +221,7 @@ ognuna con lunghezza $N$. Ci permette di codificare $S = 2^K$ segnali usando blo
 
 \textit{OSSERVAZIONE}: Il numero di codewords $S$ è un intero, ma il numero di bit necessario per scegliere una codeword, ovvero $K\equiv \log_2 S$, non è necessariamente un intero.
 
-\newpage
-\subsubsection{Tasso di comunicazione}
+\subsection{Tasso di comunicazione}
 Il tasso di comunicazione del codice per canale è:
 \begin{equation}
 	R = \frac{K}{N}\ \text{bit}
@@ -235,26 +237,26 @@ Un decoder per $(N,k)$ codici a blocco mappa da un insieme di stringhe di output
 
 \textit{OSSERVAZIONE}: Il simbolo $\hat{s} = 0$ può essere usato per indicare un \textbf{fallimento}.
 
-\subsubsection{Probabilità di un errore di blocco}
+\subsection{Probabilità di un errore di blocco}
 La \textbf{probabilità di un errore di blocco} di un codice e di un decoder, dato un canale e una distribuzione di probabilità sul segnale codificato $P(s_{in})$ è:
 \begin{equation}
 	p_B = \sum_{s_{in}} P(s_{in})\cdot P(s_{out} \neq s_{in}|s_{in})
 \end{equation}
 
-\subsubsection{Probabilità massima di un errore di blocco}
+\subsection{Probabilità massima di un errore di blocco}
 La probabilità \textbf{massima} di un errore di blocco è:
 \begin{equation}
 	p_{BM} = \max_{s_{in}} P(s_{out} \neq s_{in}|s_{in})
 \end{equation}
 
-\subsubsection{Probabilità di errore di bit}
-Assumendo che $s$ sia rappresentato da un da un vettore binario \textbf{s} di lunghezza $K$, la probabilità di bit error consiste nella probabilità media che che un bit dell’output sia
+\subsection{Probabilità di errore di bit}
+Assumendo che $s$ sia rappresentato da un vettore binario \textbf{s} di lunghezza $K$, la probabilità di bit error consiste nella probabilità media che un bit dell’output sia
 diverso dal corrispondente bit dell’input.
 \begin{equation}
 	p_b = \max_{s} \left(\frac{1}{k} \sum_{i=1}^{k} Pr[\hat{s}(i) \neq s(i)|s]\right)
 \end{equation}
 
-\subsubsection{Decoder Ottimale}
+\subsection{Decoder Ottimale}
 Il decoder ottimale per un dato canale è quello che minimizza la probabilità di \textbf{errore di blocco}.\\ 
 Decodifica un output $y$ come $\hat{s}$ che ha la massima probabilità a posteriori:
 \begin{equation}
@@ -263,7 +265,7 @@ Decodifica un output $y$ come $\hat{s}$ che ha la massima probabilità a posteri
 
 con: $\hat{s_{\text{output}}} = \text{argmax}\ P(s|y)$
 \newpage
-\subsection{Teorema di Shannon per canali rumorosi}
+\section{Teorema di Shannon per canali rumorosi}
 Il Teorema di compone di tre parti:
 \begin{enumerate}
 	\item Per ogni canale discreto di tipo \textbf{memoryless}, la capacità di canale:
@@ -281,7 +283,7 @@ Il Teorema di compone di tre parti:
 	\item Per ogni $p_b$ tassi maggiori di $R(p_b)$ \textbf{non sono possibili}.
 \end{enumerate}
 
-\subsubsection{Conferma del Teorema di Shannon per canali rumorosi sul Noisy Typewriter Channel}
+\subsection{Conferma del Teorema di Shannon per canali rumorosi sul Noisy Typewriter Channel}
 
 Possiamo creare una strategia di comunicazione completamente \textbf{priva di errori} usando un codice a blocchi di lunghezza $N=1$.\\ Usiamo come alfabeto un sottoinsieme di $A_X$ formato dalle lettere ogni 3: \verb|B,E,H,|$\cdots$\verb|,Z| 
 
@@ -292,7 +294,7 @@ $$
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.8\textwidth]{images/proofNT.png}
+	\includegraphics[width=0.75\textwidth]{images/proofNT.png}
 \end{figure}
 
 

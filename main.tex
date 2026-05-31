@@ -535,9 +535,107 @@ CP(A,B) = \{\text{superoperatori $CP$ da $A$ a $B$}\}, \quad CP(A,A) =
 \end{center}
 
 
+\chapter{Misurare distanze ed errori}
 
+Dati due stati quantistici $\rho$ e $\sigma$, quanto facilmente possiamo distinguerli con una misura?
 
+\section{Metrica}
+È necessario introdurre una metrica per valutare la distanza tra due stati.
+Una \textbf{metrica} da un insieme (di stati quantistici) $S(\mathcal H)$ è una funzione 
+\begin{equation}
+d: S(\mathcal H) \times S(\mathcal H) \to \mathbb{R}_{\geq 0}, \text{ tale che}
+\end{equation}
+%
+valgono le seguenti proprietà:
+\begin{enumerate}
+	\item $d(\rho, \sigma)$ ...
+	\item ...
+	\item ...
+\end{enumerate}
 
+\section{Norma 1 (o \textit{Trace norm})}
+Una prima metrica può essere la \bf norma 1\rm. Sia $M \in Lin(\mathcal{H}, \mathcal K)$, la trace norm (o norma 1) di $M$ è la somma dei valori singolari di $M$.
 
+\paragraph{Proprietà della trace norm}
+Sia $M \in Lin(\mathcal H, \mathcal K)$, allora:
+\begin{enumerate}
+	\item $\|M\|_1 = tr[\sqrt{M^\top M}]$
+	\item $\|M\|_1 = \|M^\dagger\|_1 = \|M^\top|_1 =\|\overline M\|_1$
+	\item Se $V, \,W$ sono isometrie, $\|VMW\|_1 = \|M\|_1$
+	\item Se $\mathcal H = \mathcal K$ e $M = M^\dagger$ ha spettro $\lambda_1, \dots, \lambda_m$, allora $\|M\|_1 =\displaystyle\sum_{i=1}^m |\lambda_i|$.
+\end{enumerate}
+%
+Osserviamo che, se $\rho \in S(\mathcal H)$, allora $\|\rho\|_1 = 1$.
+
+\subsection{Trace distance - metrica}
+Date $\rho, \,\sigma \in S(\mathcal H)$, la \textbf{trace distance} tra $\rho, \, \sigma$ è
+
+\begin{equation}
+T(\rho, \sigma) \coloneqq \frac{1}{2}\|\rho - \sigma \|_1
+\end{equation}
+
+La trace distance gode di alcune proprietà. Siano $\rho, \, \sigma \in S(\mathcal H)$, allora:
+\begin{enumerate}
+	\item Se $\rho - \sigma$ ha autovalori $\lambda_1, \dots, \lambda_m$, possiamo calcolare la trace distance come
+	\begin{equation}
+		T(\rho, \sigma) = \sum _{i = 1, \lambda_i > 0}^n \lambda_i
+	\end{equation}
+	\item $T(\rho, \sigma) = \max_{0 \leq Q \leq 1} \mathrm{tr}[Q(\rho - \sigma)]$, e il massimo si ottiene quando $Q$ è una proiezione.
+	
+\paragraph{Dimostrazione proprietà 1}
+\paragraph{Dimostrazione proprietà 2}
+
+\subsection{Esempi di calcolo della trace distance}
+$\rho_{AB} = \ket{\phi_{AB}^+} \bra{\phi_{AB}^+}$, $\sigma_{AB} = \frac{1}{2}\left( \ket{00}\bra{00} + \ket{11}\bra{11} \right)$
+
+inserire calcolo...
+\end{enumerate}
+
+\subsubsection{Altre proprietà sulla trace distance}
+\begin{enumerate}
+	\item $0 \leq T(\rho, \sigma) \leq 1$, ed è uguale a zero se $\rho = \sigma$;
+	\item Invariante per isometrie;
+	\item Se $\rho_{AB} \in S(AB)$, allora $T(\rho_A, \sigma_A) \leq T(\rho_{AB}, \sigma_{AB})$, ossia è monotona sulla traccia parziale;
+	\item Se $\phi_{A\to B} \in C(A,B)$ e $\rho_a, \sigma_a \in S(A)$. Allora 
+\end{enumerate}
+Le isometrie non fanno variare la trace distance. Osserviamo invece che la traccia parziale può causare una perdita di distinguibilità tra i due stati. 
+
+\subsection{Teorema di Helstrom}
+
+Dati $\rho,\, \sigma \in S(\mathcal H)$ matrici densità. Supponiamo di aver ricevuto $\rho, \, \sigma$ con una probabilità uniforme $\dfrac{1}{2}$. Allora la probabilità massima di identificare lo stato corretto eseguendo una misurazione con due risultati è \begin{equation}
+p_{\max} = \frac{1}{2} + \frac{1}{2}T(\rho, \sigma)
+\end{equation}.
+
+\subsection{Cosa succede su stati classici?}
+Se $p_x, \, q_x$ sono distribuzioni di probabilità su un sistema classico $X$ con matrici densità $\rho(x) = \sum_x p_x(x) \ket x \bra x$, $\sigma(x) = \sum_x q_x(x) \ket x \bra x$, allora la trace distance coincide con 
+
+\begin{equation}
+T(p_x, q_x) = \frac{1}{2} \sum_x |p_x(x - q_x(x))|,
+\end{equation}
+%
+ossia con la distanza statistica su distribuzioni di probabilità.
+
+\subsection{E su stati puri?}
+Se $\ket\phi, \, \ket\psi \in \mathcal H$ e $\rho = \ket\phi \bra\phi$, allora
+
+\begin{equation}
+T(\rho, \sigma) = \sqrt{1 - |\braket{\phi\lvert\psi}|^2} 
+\end{equation}
+%
+dove $\braket{\phi \lvert \psi} = \cos\theta$, con $\theta$ angolo tra $\phi, \, \psi$.
+
+Inoltre, vale anche che 
+\begin{equation}
+|\braket{\phi \lvert \psi} | = \sqrt{\braket{\phi \lvert \psi}\braket{\psi \lvert \phi}} = \sqrt{\mathrm{tr}[\rho\sigma]}
+\end{equation}
+
+\subsection{Fidelity}
+La fidelity tra $\rho, \, \sigma$ è definita come
+
+\begin{equation}
+F(\rho, \sigma) := \|\sqrt\rho\sqrt\sigma \|_1
+\end{equation}
+
+\paragraph{Osservazioni}
 
 \end{document}
